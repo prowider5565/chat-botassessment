@@ -35,15 +35,40 @@ async def handle_message_detail(query: types.CallbackQuery):
 
 @router.callback_query(lambda callback: callback.data.startswith("previous_page"))
 async def previous_messages_pagination_handler(query: types.CallbackQuery):
+    """
+    Handles the callback query for navigating to the previous page of messages.
+
+    Parameters:
+    query (types.CallbackQuery): The callback query object containing the data and user information.
+        The callback data should start with "previous_page:" followed by the current page number.
+
+    Returns:
+    None. This function is asynchronous and sends a message to the user with the previous page of messages.
+
+    Extracts the current page from the callback data, fetches the previous page of messages from the MongoDB database,
+    and sends the formatted message as a reply to the user.
+    """
     # Extract the current page from the callback data
     previous_page = int(query.data.split(":")[1])
+
     # Fetch the previous page of messages from the MongoDB database
     await bot.send_message(query.from_user.id, **get_messages_card(previous_page))
 
 
 @router.callback_query(lambda callback: callback.data.startswith("next_page"))
 async def previous_messages_pagination_handler(query: types.CallbackQuery):
+    """
+    This function handles the callback query for navigating to the next page of messages.
+
+    Parameters:
+    query (types.CallbackQuery): The callback query object containing the data and user information.
+        The callback data should start with "next_page:" followed by the current page number.
+
+    Returns:
+    None. This function is asynchronous and sends a message to the user with the next page of messages.
+    """
     # Extract the current page from the callback data
     next_page = int(query.data.split(":")[1])
+
     # Fetch the previous page of messages from the MongoDB database
     await bot.send_message(query.from_user.id, **get_messages_card(next_page))

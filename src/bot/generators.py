@@ -1,19 +1,21 @@
-from aiogram.utils.keyboard import InlineKeyboardButton
 from aiogram.types.inline_keyboard_markup import InlineKeyboardMarkup
+from aiogram.utils.keyboard import InlineKeyboardButton
 
 from src.bot.keyboards import pagination_buttons
 from src.db.config import messages_collection
-from src.bot.config import PAGE_SIZE
-from src.logger import logger as l
 from src.paginators import paginated_messages
+from src.bot.config import PAGE_SIZE
 
 
 def get_messages_card(current_page):
     """
-    Function to generate a reply keyboard with the messages.
+    Generate a formatted message card with inline keyboard buttons for pagination and message details.
 
     Parameters:
-    current_page (int): The current page of messages.
+    current_page (int): The current page number for pagination.
+
+    Returns:
+    dict: A dictionary containing the formatted message text and the inline keyboard markup.
     """
     messages = paginated_messages(current_page)
     messages_list = "".join(
@@ -30,9 +32,6 @@ def get_messages_card(current_page):
     ]
 
     # Add pagination buttons as a separate row
-    l.info("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-    l.info(messages_collection.count_documents({}))
-    l.info(current_page)
     pagination = pagination_buttons(
         current_page,
         is_first=int(current_page) in [0, 1],
