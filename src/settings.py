@@ -37,16 +37,17 @@ class Settings(BaseSettings):
 
     # Current environment
     ENVIRONMENT: str
-    DB_HOST: str
-    DB_PORT: int
-    DB_NAME: str
+    MONGO_HOST: str
+    MONGO_PORT: int
+    MONGO_NAME: str
+    MONGO_TZ_AWARE: bool
     LOG_PATH: str = "../logs/debug.log"
     IMAGE_DIR: str = "src/media"
 
-    BOT_TOKEN: str = "7278682765:AAG15-a_IcAV25-2V5TWSICtlGSwdZBhEdY"
+    BOT_TOKEN: str
 
     class Config:
-        env_file = "../env"
+        env_file = ".env"
 
 
 settings = Settings()

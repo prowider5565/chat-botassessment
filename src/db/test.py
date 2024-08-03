@@ -1,6 +1,5 @@
 import pymongo
 
-
 mongo_client = pymongo.MongoClient(host="localhost", port=27017, tz_aware=True)
 
 db = mongo_client["test_db"]
@@ -20,5 +19,9 @@ mylist = [
     {"name": "Viola", "address": "Sideway 1633"},
 ]
 
-x = collection.insert_many(mylist)
-print(x.inserted_ids)
+# x = collection.insert_many(mylist)
+collection.delete_many({})
+
+cln = collection.find()
+# dict_values = [d.to_mongo() for d in cln]
+print(list(cln))
