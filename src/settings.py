@@ -43,7 +43,7 @@ class Settings(BaseSettings):
     MONGO_TZ_AWARE: bool
     LOG_PATH: str = "../logs/debug.log"
     IMAGE_DIR: str = "src/media"
-
+    DOMAIN: str
     BOT_TOKEN: str
 
     class Config:

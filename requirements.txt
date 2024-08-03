@@ -5,3 +5,4 @@ pymongo
 uvicorn
 yarl
 gunicorn
+aiogram

@@ -6,7 +6,7 @@ from fastapi import status
 from typing import List
 
 from src.db.config import messages_collection
-from .paginators import paginated_messages
+from src.paginators import paginated_messages
 from .schemas import Message
 from .utils import utd, dtu
 

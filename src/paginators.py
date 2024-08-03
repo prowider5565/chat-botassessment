@@ -1,5 +1,5 @@
 from src.db.config import messages_collection
-from .utils import utd
+from .api.utils import utd
 
 
 def paginated_messages(page, count=2):
