@@ -36,7 +36,7 @@ async def content_handler(message: types.Message, state: FSMContext):
     Success Message
     """
     timestamp = dtu(
-        datetime.utcnow()
+        str(datetime.utcnow())
     )  # Get the current timestamp in a specific format using the dtu function.
     sender = message.from_user.id  # Get the ID of the sender from the received message.
     content = message.text  # Get the content of the message from the received message.
@@ -55,3 +55,22 @@ async def content_handler(message: types.Message, state: FSMContext):
         "Message created successfully",
         reply_markup=types.ReplyKeyboardRemove(),
     )
+
+
+# @router.message(lambda msg: msg.text == "My Messages")
+# async def my_messages_handler(message: types.Message):
+#     """
+#     This function handles the initial request for the user's messages. It sets the current page to 1,
+#     fetches the messages from the database, and sends them as a card with pagination buttons.
+
+#     Parameters:
+#     message (types.Message): The received message containing the user's ID.
+
+#     Returns:
+#     Messages card with pagination buttons
+#     """
+#     current_page = 1
+#     messages_card = get_messages_card(
+#         current_page, filters={"sender": message.from_user.id}
+#     )
+#     await message.answer()

@@ -2,6 +2,7 @@ from aiogram import Router, types
 import bson
 
 from src.bot.generators import get_messages_card
+from src.bot.utils import silent_delete_message
 from src.db.config import messages_collection
 from src.bot.config import bot
 
@@ -48,6 +49,7 @@ async def previous_messages_pagination_handler(query: types.CallbackQuery):
     Extracts the current page from the callback data, fetches the previous page of messages from the MongoDB database,
     and sends the formatted message as a reply to the user.
     """
+    await silent_delete_message(query.message)
     # Extract the current page from the callback data
     previous_page = int(query.data.split(":")[1])
 
@@ -67,6 +69,7 @@ async def previous_messages_pagination_handler(query: types.CallbackQuery):
     Returns:
     None. This function is asynchronous and sends a message to the user with the next page of messages.
     """
+    await silent_delete_message(query.message)
     # Extract the current page from the callback data
     next_page = int(query.data.split(":")[1])
 

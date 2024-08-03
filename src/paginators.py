@@ -3,7 +3,7 @@ from src.bot.config import PAGE_SIZE
 from .api.utils import utd
 
 
-def paginated_messages(page, count=PAGE_SIZE):
+def paginated_messages(page, count=PAGE_SIZE, **filters):
     """
     Function to paginate messages in the MongoDB database.
 
@@ -22,7 +22,7 @@ def paginated_messages(page, count=PAGE_SIZE):
             "id": str(message["_id"]),
         }
         for message in list(
-            messages_collection.find().skip((page - 1) * count).limit(count)
+            messages_collection.find(filters).skip((page - 1) * count).limit(count)
         )
     ]
     data = {"data": messages, "count": len(messages), "page": page}

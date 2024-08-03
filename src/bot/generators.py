@@ -7,7 +7,7 @@ from src.paginators import paginated_messages
 from src.bot.config import PAGE_SIZE
 
 
-def get_messages_card(current_page):
+def get_messages_card(current_page, **filters):
     """
     Generate a formatted message card with inline keyboard buttons for pagination and message details.
 
@@ -17,10 +17,10 @@ def get_messages_card(current_page):
     Returns:
     dict: A dictionary containing the formatted message text and the inline keyboard markup.
     """
-    messages = paginated_messages(current_page)
+    messages = paginated_messages(current_page, **filters)
     messages_list = "".join(
         [
-            f"{index}. {row['content'][:30]}... - **{row['timestamp']}**\n\n"
+            f"{index}. <b>{row['content'][:30]}</b> - <em>{row['timestamp']}</em>\n\n"
             for index, row in enumerate(messages["data"], start=1)
         ]
     )
@@ -36,7 +36,7 @@ def get_messages_card(current_page):
         current_page,
         is_first=int(current_page) in [0, 1],
         is_last=messages_collection.count_documents({})
-        < (int(current_page) + PAGE_SIZE),
+        < (int(current_page) * PAGE_SIZE),
     )
     # Combine the message buttons and pagination buttons
     messages_markup = InlineKeyboardMarkup(

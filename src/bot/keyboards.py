@@ -5,8 +5,10 @@ from aiogram.types.inline_keyboard_button import InlineKeyboardButton
 
 get_button = KeyboardButton(text="Messages")
 create_button = KeyboardButton(text="Create Message")
+# my_messages_button = KeyboardButton(text="My Messages")
 user_menu = ReplyKeyboardMarkup(
-    keyboard=[[get_button, create_button]], resize_keyboard=True
+    keyboard=[[get_button, create_button]],
+    resize_keyboard=True,
 )
 
 
