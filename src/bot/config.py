@@ -6,3 +6,4 @@ from src.settings import settings
 bot = Bot(token=settings.BOT_TOKEN)
 memory = MemoryStorage()
 dp = Dispatcher(storage=memory)
+PAGE_SIZE = 2

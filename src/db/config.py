@@ -10,3 +10,5 @@ mongo_client = pymongo.MongoClient(
 )
 mongo_db = mongo_client[settings.MONGO_NAME]
 messages_collection = mongo_db["messages"]
+
+

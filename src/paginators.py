@@ -1,8 +1,9 @@
 from src.db.config import messages_collection
+from src.bot.config import PAGE_SIZE
 from .api.utils import utd
 
 
-def paginated_messages(page, count=2):
+def paginated_messages(page, count=PAGE_SIZE):
     """
     Function to paginate messages in the MongoDB database.
 
